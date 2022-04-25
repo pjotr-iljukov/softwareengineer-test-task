@@ -53,14 +53,20 @@ Algorithm: (average category rating during defined period / all ratings count du
         E.g. current week vs. previous week or December vs. January change in percentages.
 
 
+```
 There are some things that can be improved in current implementation:
 - logging
 - error handling
 - adding more tests for edge cases
+- load properties
+```
+
 
 ### Bonus
 
 * How would you build and deploy the solution?
+
 Build docker image using Dockerfile or jib plugin as I did in current project (setup in build.gradle)
+And use that image for k8s application.yml config
 
     At Klaus we make heavy use of containers and [Kubernetes](https://kubernetes.io).
