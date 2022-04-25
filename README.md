@@ -9,6 +9,9 @@ Please fork this repository and share the link to your solution with us.
 ### Tasks
 
 1. Come up with ticket score algorithm that accounts for rating category weights (available in `rating_categories` table). Ratings are given in a scale of 0 to 5. Score should be representable in percentages from 0 to 100. 
+```
+Algorithm: (average category rating during defined period / all ratings count during defined period) * category weight
+```
 
 2. Build a service that can be queried using [gRPC](https://grpc.io/docs/tutorials/basic/go/) calls and can answer following questions:
 
@@ -50,8 +53,14 @@ Please fork this repository and share the link to your solution with us.
         E.g. current week vs. previous week or December vs. January change in percentages.
 
 
+There are some things that can be improved in current implementation:
+- logging
+- error handling
+- adding more tests for edge cases
+
 ### Bonus
 
 * How would you build and deploy the solution?
+Build docker image using Dockerfile or jib plugin as I did in current project (setup in build.gradle)
 
     At Klaus we make heavy use of containers and [Kubernetes](https://kubernetes.io).

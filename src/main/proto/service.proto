@@ -1,0 +1,70 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.klausapp.grpc";
+
+service CategoryScoreService {
+  rpc getCategoryScores(CategoryScoreRequest) returns (CategoryScoreResponse);
+  rpc getTicketScores(TicketScoreRequest) returns (TicketScoreResponse);
+  rpc getOverallQualityScore(OverallQualityScoreRequest) returns (OverallQualityScoreResponse);
+  rpc getScoreChangeOverPeriod(ScoreChangeOverPeriodRequest) returns (ScoreChangeOverPeriodResponse);
+}
+
+message ScoreChangeOverPeriodRequest {
+  string FirstPeriodStart = 1;
+  string FirstPeriodEnd = 2;
+  string SecondPeriodStart = 3;
+  string SecondPeriodEnd = 4;
+}
+
+message ScoreChangeOverPeriodResponse {
+  double ScoreChange = 1;
+}
+
+message OverallQualityScoreRequest {
+  string StartDate = 1;
+  string EndDate = 2;
+}
+
+message OverallQualityScoreResponse {
+  double OverallScore = 1;
+}
+
+message CategoryScoreRequest {
+  string StartDate = 1;
+  string EndDate = 2;
+}
+
+message TicketScoreRequest {
+  string StartDate = 1;
+  string EndDate = 2;
+}
+
+message TicketScoreResponse {
+  repeated AggregatedTicketScoreResponse TicketScores = 1;
+}
+
+message AggregatedTicketScoreResponse {
+  int32 TicketID = 1;
+  string Category = 2;
+  double Score = 3;
+}
+
+message CategoryScoreResponse {
+  repeated AggregatedCategoryScoreResponse Scores = 1;
+}
+
+message AggregatedCategoryScoreResponse {
+  string Category = 1;
+  int32 Ratings = 2;
+  double Score = 3;
+  repeated AggregatedCategoryScorePeriodResponse Periods = 4;
+}
+
+message AggregatedCategoryScorePeriodResponse {
+  string Name = 1;
+  double Value = 2;
+}
+
+message ErrorResponse {
+  string Message = 1;
+}
