@@ -26,7 +26,6 @@ public class PeriodService {
       final var step = start;
       var endOfWeek = start
               .plusDays(dayToEndOfTheWeek(start));
-      // TODO tests
       var count = ratings
               .stream()
               .filter(r -> (r.getCreatedAt().toLocalDate().isEqual(step) || r.getCreatedAt().toLocalDate().isAfter(step))
